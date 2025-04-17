@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/assets/success.png">
+    <title>Config Tutorial</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            padding: 20px;
+            line-height: 1.6;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 900px;
+            padding: 30px;
+            border-radius: 12px;
+        }
+        h1 {
+            color: #0056b3;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h2 {
+            color: #007bff;
+            margin-top: 20px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+        }
+        pre {
+            background: #f1f1f1;
+            color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 14px;
+        }
+        code {
+            color: #d63384;
+            font-weight: bold;
+        }
+        .section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #007bff;
+            border-radius: 6px;
+        }
+        .cta {
+            margin-top: 30px;
+        }
+
+        .cta a {
+            text-decoration: none;
+            color: white;
+            background: #ff7b00;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .cta a:hover {
+            background: #e66a00;
+            transform: scale(1.05);
+        }
+        .comment {
+            color : green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cta">
+            <a href="/">Go Home</a>
+        </div>
+        <h1>Configuration Tutorial</h1>
+        <div class="section">
+            <p>This tutorial explains the structure and options available in the custom web server configuration file.</p>
+        </div>
+        
+        <h2>Example Configuration</h2>
+        <pre>
+<p class="comment"># example of a config file</p>
+server [
+    port = <code>3000</code>;
+    servernames = <code>localhost</code>;
+    bodysizelimit = <code>10MB</code>;
+    globalroot = <code>html</code>;
+
+    route / {
+        autoindex = <code>off</code>;
+        index = <code>index.html</code>;
+        acceptedmethods = <code>GET</code>;
+    }
+    
+    route /delete {
+        autoindex = <code>off</code>;
+        index = <code>delete.html</code>;
+        root = <code>html</code>;
+        acceptedmethods = <code>GET, DELETE</code>;
+    }
+    
+    route /login {
+        autoindex = <code>on</code>;
+        acceptedmethods = <code>GET</code>;
+    }
+    
+    route /uploads {
+        autoindex = <code>on</code>;
+        index = <code>upload.html</code>;
+        uploaddir = <code>uploads</code>;
+        acceptedmethods = <code>GET, POST, DELETE</code>;
+    }
+
+    errorpage = <code>404, html/404.html</code>;
+    errorpage = <code>405, html/405.html</code>;
+    errorpage = <code>500, html/500.html</code>;
+]
+        </pre>
+        
+        <h2>Configuration Breakdown</h2>
+        <div class="section"><strong>port:</strong> Defines the port the server listens on.</div>
+        <div class="section"><strong>servernames:</strong> Sets the hostname(s) for the server.</div>
+        <div class="section"><strong>bodysizelimit:</strong> Maximum size for incoming requests.</div>
+        <div class="section"><strong>globalroot:</strong> Root directory for serving files when not specified in route root.</div>
+        <div class="section"><strong>errorpage:</strong> Custom error pages for different HTTP error codes.</div>
+        <div class="section"><strong>route:</strong> Defines different URL endpoints with settings like index files and accepted methods.</div>
+        <div class="section"><strong>autoindex:</strong> Enables or disables directory listing.</div>
+        <div class="section"><strong>acceptedmethods:</strong> Specifies allowed HTTP methods.</div>
+        <div class="section"><strong>uploaddir:</strong> Defines a directory for file uploads.</div>
+        <div class="section"><strong>root:</strong> Root directory for serving files.</div>
+    </div>
+</body>
+</html>
